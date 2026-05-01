@@ -63,7 +63,7 @@ class PriorityQueueSystem:
             elapsed = self.time - self.last_start
             self.current.remaining_time = max(0.0, self.current.remaining_time - elapsed)
             self.current.last_queue_enter_time = self.time
-            self.low_q.appendleft(self.current)
+            self.low_q.append(self.current)
             if self.time >= self.warmup:
                 self.busy_time += elapsed
             self.server_busy = False
@@ -181,7 +181,7 @@ class PriorityQueueSystem:
         }
 
 def start_model(lambda1, lambda2, mu, T=100000, warmup=20000, seed=42):
-    np.random.seed(seed)
+    # np.random.seed(seed)
 
     model = PriorityQueueSystem(lambda1, lambda2, mu, T, warmup)
     result = model.run()
